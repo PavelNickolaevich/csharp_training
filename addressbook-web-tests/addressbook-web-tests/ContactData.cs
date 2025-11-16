@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace WebAddressBookTests
 {
-    internal class ContactData
+    public class ContactData
     {
         private string firstname;
         private string middlename;
@@ -19,7 +19,7 @@ namespace WebAddressBookTests
         private string nickname;
         private DateInfo dateInfo;
 
-        internal class DateInfo
+        public class DateInfo
         {
             private string day;
             private string month;

@@ -146,6 +146,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AccountData.cs" />
+    <Compile Include="BaseTest.cs" />
     <Compile Include="ContactCreationTests.cs" />
     <Compile Include="ContactData.cs" />
     <Compile Include="GroupData.cs" />
