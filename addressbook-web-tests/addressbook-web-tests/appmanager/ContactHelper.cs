@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WebAddressBookTests;
@@ -19,6 +20,43 @@ namespace WebAddressBookTests
             FullContactInfo(contactData);
             SubmitContactInfo();
 
+            return this;
+        }
+
+        public ContactHelper ModificationGroup(int indexContact, ContactData contactData, int numBtn)
+        {
+            manager.NavigationHelper.GoToHomePage();
+
+            SelectModifyContact(indexContact);
+            FullContactInfo(contactData);
+            UpdateContactInfo(numBtn);
+
+            manager.NavigationHelper.ReturnToHomePage();
+
+            return this;
+        }
+
+        public ContactHelper RemoveContact(int indexContact)
+        {
+            manager.NavigationHelper.GoToHomePage();
+
+            SelectContact(indexContact);
+            DeleteContact();
+
+            manager.NavigationHelper.ReturnToHomePage();
+
+            return this;
+        }
+
+        public ContactHelper DeleteContact()
+        {
+            driver.FindElement(By.Name("delete")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContact(int indexContact)
+        {
+            driver.FindElements(By.XPath($"//input[@type='checkbox']"))[indexContact].Click();
             return this;
         }
 
@@ -61,5 +99,18 @@ namespace WebAddressBookTests
 
             return this;
         }
+
+        public ContactHelper UpdateContactInfo(int numBtn)
+        {
+            driver.FindElements(By.XPath($"//input[@name='update']"))[numBtn].Click();
+            return this;
+        }
+
+        public ContactHelper SelectModifyContact(int indexContact)
+        {
+            driver.FindElements(By.XPath($"//img[@title='Edit']"))[indexContact].Click();
+            return this;
+        }
+
     }
 }
