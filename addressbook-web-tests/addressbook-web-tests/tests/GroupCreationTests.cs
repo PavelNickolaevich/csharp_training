@@ -17,17 +17,21 @@ namespace WebAddressBookTests
         [Test]
         public void GroupCreationTest()
         {
-            AccountData accountData = new AccountData("admin", "secret");
             GroupData groupData = new GroupData("test", "test", "test");
 
-            GoToHomePage();
-            Login(accountData);
-            GoToGroupPage();
-            InitGroupCreation();
-            FillGroupForm(groupData);
-            SubmitGroupCreation();
-            ReturnToGroupsPage();
-            LogOut();
+            app.Groups
+                   .CreateGroup(groupData);
+            app.NavigationHelper.LogOut();
+        }
+
+        [Test]
+        public void EmptyCreationTest()
+        {
+            GroupData groupData = new GroupData("", "", "");
+
+            app.Groups
+                .CreateGroup(groupData);
+            app.NavigationHelper.LogOut();
         }
     }
 }
