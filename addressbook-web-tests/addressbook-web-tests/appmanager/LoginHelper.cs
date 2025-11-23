@@ -13,14 +13,40 @@ namespace WebAddressBookTests
         public LoginHelper(ApplicationManger manger) : base(manger) { }
         public void Login(AccountData accountData)
         {
-         
+            if(IsLoggedIn())
+            {
+                if(IsLoggedIn(accountData))
+                {
+                    return;
+                }
+                Logout();
+            }
             driver.FindElement(By.Id("container")).Click();
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(accountData.Username);
-            driver.FindElement(By.Name("pass")).Click();
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(accountData.Password);
+            Type(By.Name("user"), accountData.Username);
+            Type(By.Name("pass"), accountData.Password);
             driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+        }
+
+        public bool IsLoggedIn()
+        {
+            return IsElementPresent(By.Name("logout"));
+        }
+
+        public bool IsLoggedIn(AccountData account)
+        {
+            return IsLoggedIn()
+                && driver.FindElement(By.Name("logout")).FindElement(By.TagName("b")).Text 
+                == "(" + account.Username + ")";
+                 
+        }
+
+        public void Logout()
+        {
+            if(IsLoggedIn())
+            {
+                driver.FindElement(By.LinkText("Logout")).Click();
+            }
+           
         }
     }
 }

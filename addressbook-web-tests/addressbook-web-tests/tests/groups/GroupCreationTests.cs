@@ -7,12 +7,13 @@ using System;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using WebAddressBookTests.tests;
 
 namespace WebAddressBookTests
 
 {
     [TestFixture]
-    public class GroupCreationTests : BaseTest
+    public class GroupCreationTests : AuthTestBase
     {
         [Test]
         public void GroupCreationTest()

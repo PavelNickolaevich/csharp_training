@@ -8,21 +8,10 @@ namespace WebAddressBookTests
         protected ApplicationManger app;
 
         [SetUp]
-        public void SetupTest()
+        public void SetupApllicationManager()
         {
-            app = new ApplicationManger();
-
-            AccountData accountData = new AccountData("admin", "secret");
-
-            app.NavigationHelper.GoToHomePage();
-            app.Auth.Login(accountData);
+            app = ApplicationManger.GetInstance();
+    
         }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-           app.Stop();
-        }
-
     }
 }

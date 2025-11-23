@@ -13,14 +13,21 @@ namespace WebAddressBookTests
         public NavigationHelper(ApplicationManger manger, string baseURL) : base(manger) { this.baseURL = baseURL; }
         public NavigationHelper GoToHomePage()
         {
+            if (driver.Url == baseURL + "/addressbook/")
+            {
+                return this;
+            }
             driver.Navigate().GoToUrl(baseURL + "/addressbook");
-
             return this;
         }
         public NavigationHelper GoToGroupsPage()
         {
+            if(driver.Url == baseURL + "/addressbook/group.php" 
+                && IsElementPresent(By.Name("new")))
+            {
+                return this;
+            }
             driver.FindElement(By.LinkText("groups")).Click();
-
             return this;
         }
 
@@ -28,13 +35,11 @@ namespace WebAddressBookTests
         {
             driver.FindElement(By.LinkText("home page")).Click();
             driver.Navigate().GoToUrl(baseURL + "/addressbook");
-
             return this;
         }
         public NavigationHelper LogOut()
         {
             driver.FindElement(By.LinkText("Logout")).Click();
-
             return this;
         }
     }

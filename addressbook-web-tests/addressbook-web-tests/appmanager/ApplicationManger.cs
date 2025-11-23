@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace WebAddressBookTests
 {
@@ -23,8 +24,10 @@ namespace WebAddressBookTests
         protected NavigationHelper navigationHelper;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
+       
+        private static ThreadLocal<ApplicationManger> app = new ThreadLocal<ApplicationManger>();
 
-        public ApplicationManger() {
+        private ApplicationManger() {
 
             driver = new FirefoxDriver();
             baseURL = "http://localhost";
@@ -34,6 +37,31 @@ namespace WebAddressBookTests
             this.navigationHelper = new NavigationHelper(this, baseURL);
             this.groupHelper = new GroupHelper(this);
             this.contactHelper = new ContactHelper(this);
+        }
+
+        ~ApplicationManger()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
+
+        }
+
+        public static ApplicationManger GetInstance()
+        {
+            if (!app.IsValueCreated)
+            {
+                ApplicationManger newInstance = new ApplicationManger();
+                newInstance.NavigationHelper.GoToHomePage();
+                app.Value = newInstance;
+            }
+            return app.Value;
+
         }
 
         public LoginHelper Auth
@@ -57,18 +85,6 @@ namespace WebAddressBookTests
         }
 
         public IWebDriver Driver { get { return driver; } }
-
-        public void Stop()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-        }
 
     }
 }
