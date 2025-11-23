@@ -16,7 +16,6 @@ namespace WebAddressBookTests.tests.contacts
         {
             app.Contacts
                 .RemoveContact(0);
-
         }
     }
 }

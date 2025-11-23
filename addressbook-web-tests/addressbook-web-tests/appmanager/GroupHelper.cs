@@ -10,7 +10,10 @@ namespace WebAddressBookTests
 {
     public class GroupHelper : HelperBase
     {
-        public GroupHelper(ApplicationManger manager) : base(manager) { }
+        private By allCheckboxGroups = By.XPath("//input[@type='checkbox']");
+        public GroupHelper(ApplicationManger manager) : base(manager) {
+            
+        }
         
         public GroupHelper CreateGroup(GroupData groupData)
         {
@@ -27,6 +30,9 @@ namespace WebAddressBookTests
         internal GroupHelper Modify(int indexGroup, GroupData groupData)
         {
             manager.NavigationHelper.GoToGroupsPage();
+
+            CreateGroupIfNotExsist();
+
             SelectGroup(indexGroup);
             InitGroupModification();
             FillGroupForm(groupData);
@@ -38,7 +44,11 @@ namespace WebAddressBookTests
 
         public GroupHelper RemoveGroup(int index)
         {
+
             manager.NavigationHelper.GoToGroupsPage();
+
+            CreateGroupIfNotExsist();
+
             SelectGroup(index);
             DeleteGroup();
             ReturnToGroupsPage();
@@ -96,6 +106,19 @@ namespace WebAddressBookTests
         {
             driver.FindElement(By.Name("edit")).Click();
             return this;
+        }
+
+        private int GetGroupCount()
+        {
+            return driver.FindElements(allCheckboxGroups).Count;
+        }
+
+        private void CreateGroupIfNotExsist()
+        {
+            if (GetGroupCount() == 0)
+            {
+                CreateGroup(new GroupData("test", "test", "test"));
+            }
         }
     }
 }

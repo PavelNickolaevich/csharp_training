@@ -12,11 +12,14 @@ namespace WebAddressBookTests
 {
     public class ContactHelper : HelperBase
     {
+        private By allEntityContacts = By.XPath("//tr[@name='entry']");
+
         public ContactHelper(ApplicationManger manager) :base(manager) { }
 
-        public ContactHelper CreateContatct(ContactData contactData)
+        public ContactHelper CreateContact(ContactData contactData)
         {
             GoToAddNewContact();
+
             FullContactInfo(contactData);
             SubmitContactInfo();
 
@@ -26,6 +29,8 @@ namespace WebAddressBookTests
         public ContactHelper ModificationGroup(int indexContact, ContactData contactData, int numBtn)
         {
             manager.NavigationHelper.GoToHomePage();
+
+            CreateContactIfNotExsist();
 
             SelectModifyContact(indexContact);
             FullContactInfo(contactData);
@@ -39,6 +44,8 @@ namespace WebAddressBookTests
         public ContactHelper RemoveContact(int indexContact)
         {
             manager.NavigationHelper.GoToHomePage();
+
+            CreateContactIfNotExsist();
 
             SelectContact(indexContact);
             DeleteContact();
@@ -110,6 +117,21 @@ namespace WebAddressBookTests
         {
             driver.FindElements(By.XPath($"//img[@title='Edit']"))[indexContact].Click();
             return this;
+        }
+
+        private int GetContactCount()
+        {
+            return driver.FindElements(allEntityContacts).Count;
+        }
+
+        private void CreateContactIfNotExsist()
+        {
+            ContactData contactData = new ContactData("Ivan", "Ivanovich", "Ivanov", "Test", new ContactData.DateInfo("5", "May", "1988"));
+            if (GetContactCount() == 0)
+            {
+                CreateContact(contactData);
+                manager.NavigationHelper.ReturnToHomePage();
+            }
         }
 
     }

@@ -21,7 +21,7 @@ namespace WebAddressBookTests
             ContactData contactData = new ContactData("Ivan", "Ivanovich", "Ivanov", "Test", new ContactData.DateInfo("5", "May", "1988"));
 
             app.Contacts
-                .CreateContatct(contactData);
+                .CreateContact(contactData);
             app.NavigationHelper
                 .ReturnToHomePage()
                 .LogOut();

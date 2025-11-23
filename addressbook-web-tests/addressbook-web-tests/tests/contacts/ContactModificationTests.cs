@@ -15,7 +15,7 @@ namespace WebAddressBookTests.tests.contacts
 
             ContactData contactData = new ContactData("IvanTest", "Petrovich", "Vasin", "Tes22t", new ContactData.DateInfo("10", "May", "1989"));
 
-            app.Contacts.ModificationGroup(1, contactData, 1);
+            app.Contacts.ModificationGroup(0, contactData, 1);
 
             app.NavigationHelper.LogOut();
         }
