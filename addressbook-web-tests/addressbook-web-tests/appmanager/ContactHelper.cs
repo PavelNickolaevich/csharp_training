@@ -119,12 +119,7 @@ namespace WebAddressBookTests
             return this;
         }
 
-        private int GetContactCount()
-        {
-            return driver.FindElements(allEntityContacts).Count;
-        }
-
-        private void CreateContactIfNotExsist()
+        public void CreateContactIfNotExsist()
         {
             ContactData contactData = new ContactData("Ivan", "Ivanovich", "Ivanov", "Test", new ContactData.DateInfo("5", "May", "1988"));
             if (GetContactCount() == 0)
@@ -132,6 +127,11 @@ namespace WebAddressBookTests
                 CreateContact(contactData);
                 manager.NavigationHelper.ReturnToHomePage();
             }
+        }
+
+        private int GetContactCount()
+        {
+            return driver.FindElements(allEntityContacts).Count;
         }
 
     }

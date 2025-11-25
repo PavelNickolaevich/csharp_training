@@ -14,8 +14,11 @@ namespace WebAddressBookTests.tests
     {
         [Test]
         public void GroupModifyTest()
+
         {
             GroupData groupData = new GroupData("Modify", "Modify", "Modify");
+
+            app.Groups.CreateGroupIfNotExsist();
 
             app.Groups.Modify(1, groupData);
 

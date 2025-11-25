@@ -47,8 +47,6 @@ namespace WebAddressBookTests
 
             manager.NavigationHelper.GoToGroupsPage();
 
-            CreateGroupIfNotExsist();
-
             SelectGroup(index);
             DeleteGroup();
             ReturnToGroupsPage();
@@ -113,8 +111,10 @@ namespace WebAddressBookTests
             return driver.FindElements(allCheckboxGroups).Count;
         }
 
-        private void CreateGroupIfNotExsist()
+        public void CreateGroupIfNotExsist()
         {
+            manager.NavigationHelper.GoToGroupsPage();
+
             if (GetGroupCount() == 0)
             {
                 CreateGroup(new GroupData("test", "test", "test"));

@@ -11,6 +11,14 @@ namespace WebAddressBookTests.tests.contacts
     [TestFixture]
     public class ContactDeleteTests : AuthTestBase
     {
+
+        [SetUp]
+        public void SetUp()
+        {
+            app.Contacts
+                .CreateContactIfNotExsist();
+        }
+
         [Test]
         public void ContactDeleteTest()
         {
