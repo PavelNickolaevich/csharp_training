@@ -22,7 +22,16 @@ namespace WebAddressBookTests.tests.contacts
 
             ContactData contactData = new ContactData("IvanTest", "Petrovich", "Vasin", "Tes22t", new ContactData.DateInfo("10", "May", "1989"));
 
+            List<ContactData> oldContacts = app.Contacts.GetAllContacts();
+
             app.Contacts.ModificationGroup(0, contactData, 1);
+
+            List<ContactData> newContacts = app.Contacts.GetAllContacts();
+            oldContacts[0] = contactData;
+            oldContacts.Sort();
+            newContacts.Sort();
+
+            Assert.AreEqual(oldContacts, newContacts);
 
             app.NavigationHelper.LogOut();
         }

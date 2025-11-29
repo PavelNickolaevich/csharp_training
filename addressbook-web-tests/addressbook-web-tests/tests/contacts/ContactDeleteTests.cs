@@ -22,8 +22,15 @@ namespace WebAddressBookTests.tests.contacts
         [Test]
         public void ContactDeleteTest()
         {
+            List<ContactData> oldContacts = app.Contacts.GetAllContacts();
+
             app.Contacts
-                .RemoveContact(0);
+              .RemoveContact(0);
+
+            List<ContactData> newContacts = app.Contacts.GetAllContacts();
+            oldContacts.RemoveAt(0);
+
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

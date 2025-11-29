@@ -134,5 +134,20 @@ namespace WebAddressBookTests
             return driver.FindElements(allEntityContacts).Count;
         }
 
+        public List<ContactData> GetAllContacts() {
+
+            List<ContactData> contacts = new List<ContactData>();
+            manager.NavigationHelper.GoToHomePage();
+
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath($"//tr[@name='entry']"));
+
+            foreach(IWebElement element in elements)
+            {
+                string lastname = element.FindElements(By.TagName("td"))[1].Text;
+                string firstname = element.FindElements(By.TagName("td"))[2].Text;
+                contacts.Add(new ContactData(firstname, lastname));
+            }
+            return contacts;
+        }
     }
 }

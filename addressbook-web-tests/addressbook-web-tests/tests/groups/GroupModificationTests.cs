@@ -1,9 +1,10 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 
 
 
@@ -16,11 +17,19 @@ namespace WebAddressBookTests.tests
         public void GroupModifyTest()
 
         {
-            GroupData groupData = new GroupData("Modify", "Modify", "Modify");
+            GroupData newGroupData = new GroupData("Modify", null, null);
 
             app.Groups.CreateGroupIfNotExsist();
 
-            app.Groups.Modify(1, groupData);
+            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+
+            app.Groups.Modify(0, newGroupData);
+
+            List<GroupData> newGroup = app.Groups.GetGroupsList();
+            oldGroups[0].Name = newGroupData.Name;
+            oldGroups.Sort();
+            newGroup.Sort();
+            Assert.AreEqual(oldGroups, newGroup);
 
         }
     }
