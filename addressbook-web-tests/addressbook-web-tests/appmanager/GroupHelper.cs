@@ -58,6 +58,7 @@ namespace WebAddressBookTests
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            groupHash = null;
             return this;
         }
 
@@ -79,6 +80,7 @@ namespace WebAddressBookTests
         public GroupHelper DeleteGroup()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[5]")).Click();
+            groupHash = null;
             return this;
         }
 
@@ -97,6 +99,7 @@ namespace WebAddressBookTests
         private GroupHelper SubmitGroupModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            groupHash = null;
             return this;
         }
 
@@ -121,16 +124,30 @@ namespace WebAddressBookTests
             }
         }
 
+        private List<GroupData> groupHash = null;
+
+
         public List<GroupData> GetGroupsList()
         {
-            List<GroupData> groups = new List<GroupData>();
-            manager.NavigationHelper.GoToGroupsPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
-            foreach (IWebElement element in elements)
+            if (groupHash == null)
             {
-                groups.Add(new GroupData(element.Text));
+                groupHash = new List<GroupData>();  
+                manager.NavigationHelper.GoToGroupsPage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+                foreach (IWebElement element in elements)
+                {
+
+                    groupHash.Add(new GroupData(element.Text) {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
+                }
             }
-            return groups;
+            return new List<GroupData>(groupHash);
+        }
+
+        public int GetGroupsCount()
+        {
+            return driver.FindElements(By.CssSelector("span.group")).Count;
         }
     }
 }

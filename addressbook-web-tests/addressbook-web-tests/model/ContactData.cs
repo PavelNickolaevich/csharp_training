@@ -81,6 +81,13 @@ namespace WebAddressBookTests
             set { this.dateInfo = value; }
         }
 
+        public string Id { get; set; } 
+
+        public override int GetHashCode()
+        {
+            return Firstname.GetHashCode() ^ Lastname.GetHashCode();
+        }
+
         public override string ToString()
         {
             return $"firstname: {Firstname}, lastname: {Lastname}";
