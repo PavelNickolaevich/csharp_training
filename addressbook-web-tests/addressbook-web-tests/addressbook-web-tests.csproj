@@ -155,6 +155,7 @@
     <Compile Include="model\GroupData.cs" />
     <Compile Include="appmanager\GroupHelper.cs" />
     <Compile Include="tests\contacts\ContactDeleteTests.cs" />
+    <Compile Include="tests\contacts\ContactInformationTests.cs" />
     <Compile Include="tests\contacts\ContactModificationTests.cs" />
     <Compile Include="tests\groups\GroupRemovalTests.cs" />
     <Compile Include="appmanager\HelperBase.cs" />

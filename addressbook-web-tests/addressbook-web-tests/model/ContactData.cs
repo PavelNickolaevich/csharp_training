@@ -18,6 +18,8 @@ namespace WebAddressBookTests
         private string lastname;
         private string nickname;
         private DateInfo dateInfo;
+        private string allEmail;
+        private string allPhones;
 
         public class DateInfo
         {
@@ -36,10 +38,35 @@ namespace WebAddressBookTests
             public string Year { get => year; set => year = value; }
         }
 
+    
+
         public ContactData(string firstname, string lastname)
         {
             this.firstname = firstname;
             this.lastname = lastname;
+        }
+
+        public ContactData(
+            string firstname,
+            string lastname,
+            string addresses,
+            string homePhone,
+            string mobileHome,
+            string workHome,
+            string email,
+            string email2,
+            string email3
+            )
+        {
+            this.firstname = firstname;
+            this.lastname = lastname;
+            Address = addresses;
+            HomePhone = homePhone;
+            MobilePhone = mobileHome;
+            WorkPhone = workHome;
+            Email = email;
+            Email2 = email2;
+            Email3 = email3;
         }
 
         public ContactData(string firstname, string middlename, string lastname, string nickname, DateInfo dateInfo)
@@ -74,6 +101,13 @@ namespace WebAddressBookTests
             get { return nickname; }
             set { this.nickname = value; }
         }
+        public string Address { get; set; }
+        public string HomePhone { get; set; }
+        public string MobilePhone { get; set; }
+        public string WorkPhone { get; set; } 
+        public string Email { get; set; } 
+        public string Email2 { get; set; } 
+        public string Email3 { get; set; } 
 
         public DateInfo DateInfoProperty
         {
@@ -81,7 +115,51 @@ namespace WebAddressBookTests
             set { this.dateInfo = value; }
         }
 
-        public string Id { get; set; } 
+        public string AllEmail
+        {
+            get
+            {
+                if (allEmail != null)
+                {
+                    return allEmail;
+                }
+                else
+                {
+                    return Email + "\r\n" + Email2 + "\r\n" + Email3;
+                }
+            }
+            set
+            {
+                allEmail = value;
+            }
+        }
+
+        public string AllPhones
+        {
+            get { if (allPhones != null)
+                {
+                    return allPhones;
+                } else
+                {
+                    return CleanUpPhone(HomePhone) + CleanUpPhone(MobilePhone) + CleanUpPhone(WorkPhone).Trim();
+                }
+            }
+            set
+            {
+                allPhones = value;
+            }
+        }
+
+        private string CleanUpPhone(string phone)
+        {
+            if(phone == null || phone == "")
+            {
+                return "";
+            }
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+        }
+
+        public string Id { get; set; }
 
         public override int GetHashCode()
         {
@@ -127,6 +205,5 @@ namespace WebAddressBookTests
             return Lastname.CompareTo(other.Lastname);
         }
     }
-
 }
 
