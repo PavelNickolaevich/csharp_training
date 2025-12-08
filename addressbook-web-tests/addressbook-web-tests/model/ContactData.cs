@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.BiDi.Input;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace WebAddressBookTests 
@@ -139,7 +141,8 @@ namespace WebAddressBookTests
             get { if (allPhones != null)
                 {
                     return allPhones;
-                } else
+                } 
+                else
                 {
                     return CleanUpPhone(HomePhone) + CleanUpPhone(MobilePhone) + CleanUpPhone(WorkPhone).Trim();
                 }
@@ -156,7 +159,18 @@ namespace WebAddressBookTests
             {
                 return "";
             }
-            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            else
+            {
+                return phone
+                    .Replace("H:", "")
+                    .Replace("M:", "")
+                    .Replace("W:", "")
+                    .Replace(" ", "")
+                    .Replace("-", "")
+                    .Replace("(", "")
+                    .Replace(")", "") + "\r\n";
+            }
+   
         }
 
         public string Id { get; set; }

@@ -175,6 +175,14 @@ namespace WebAddressBookTests
             return this;
         }
 
+        public ContactHelper SelectDetailsContact(int indexContact)
+        {
+            driver.FindElements(By.XPath($"//img[@title='Details']"))[indexContact].Click();
+            return this;
+        }
+
+
+
         public void CreateContactIfNotExsist()
         {
             ContactData contactData = new ContactData("Ivan", "Ivanovich", "Ivanov", "Test", new ContactData.DateInfo("5", "May", "1988"));
@@ -216,7 +224,7 @@ namespace WebAddressBookTests
             return new  List<ContactData>(contactsHash);
         }
 
-        internal ContactData getContactDataFromTable(int index)
+        public ContactData getContactDataFromTable(int index)
         {
             manager.NavigationHelper.GoToHomePage();
             IWebElement element = driver.FindElements(By.XPath($"//tr[@name='entry']"))[index];
@@ -238,7 +246,7 @@ namespace WebAddressBookTests
 
         }
 
-        internal ContactData getContactInformationFromEditForm(int index)
+        public ContactData getContactInformationFromEditForm(int index)
         {
             manager.NavigationHelper.GoToHomePage();
             SelectModifyContact(index);
@@ -266,6 +274,44 @@ namespace WebAddressBookTests
                 Email3 = email3
             };
 
+        }
+
+        public ContactData getContactDataInformationFromDeatailsForm(int index)
+        {
+
+            manager.NavigationHelper.GoToHomePage();
+
+            SelectDetailsContact(index);
+
+            IWebElement content = driver.FindElement(By.Id("content"));
+            string allText = content.Text;
+
+            string[] lines = allText.Split(new[] { "\r\n", "\r", "\n" },
+                                 StringSplitOptions.None);
+
+            string[] partsName = lines[0].Split(' ');
+            string address = lines[1];
+            string homePhone = lines[3];
+            string mobilePhone = lines[4];
+            string workPhone = lines[5];
+            string email = lines[7];
+            string email2 = lines[8];
+            string email3 = lines[8];
+
+            string firstname = partsName[0];
+            string lastname = partsName[1];
+
+
+            return new ContactData(firstname, lastname)
+            {
+                Address = address,
+                HomePhone = homePhone,
+                MobilePhone = mobilePhone,
+                WorkPhone = workPhone,
+                Email = email,
+                Email2 = email2,
+                Email3 = email3
+            };
         }
     }
 }

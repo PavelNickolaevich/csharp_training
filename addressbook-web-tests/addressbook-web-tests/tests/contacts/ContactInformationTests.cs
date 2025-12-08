@@ -42,5 +42,37 @@ namespace WebAddressBookTests.tests.contacts
             Assert.AreEqual(contactFromTable.AllPhones,  contactFromEditForm.AllPhones);
         }
 
+
+        [Test]
+         public void ContactCheckDetailInfoTest()
+        {
+
+            Random random = new Random();
+            string uniqueName = $"name_{random.Next(1, 100000000)}";
+            ContactData contact = new ContactData(
+                    uniqueName,
+                    uniqueName,
+                    "Москва 4пукпукрукрн4н4н4",
+                    "5353536",
+                    "3435-66565",
+                    "5(464)66666",
+                    "11@g.com",
+                    "12@g.com",
+                    "12@g.com"
+                    );
+            app.Contacts.CreateContactWithAddressEmailPhones(contact);
+
+            List<ContactData> contacts = app.Contacts.GetAllContacts();
+
+            int index = contacts.IndexOf(contact);
+            ContactData contactFromDetailFor = app.Contacts.getContactDataInformationFromDeatailsForm(index);
+            ContactData contactFromEditForm = app.Contacts.getContactInformationFromEditForm(index);
+
+            Assert.AreEqual(contactFromDetailFor, contactFromEditForm);
+            Assert.AreEqual(contactFromDetailFor.Address, contactFromEditForm.Address);
+            Assert.AreEqual(contactFromDetailFor.AllEmail, contactFromEditForm.AllEmail);
+            Assert.AreEqual(contactFromDetailFor.AllPhones, contactFromEditForm.AllPhones);
+
+        }    
     }
 }
