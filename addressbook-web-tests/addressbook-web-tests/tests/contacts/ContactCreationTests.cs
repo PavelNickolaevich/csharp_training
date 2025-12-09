@@ -16,11 +16,30 @@ namespace WebAddressBookTests
     public class ContactCreationTests : AuthTestBase
     {
 
-        [Test]
-        public void ContactCreationTest()
+        public static IEnumerable<ContactData> RandomDataContactDataProvider()
         {
-            ContactData contactData = new ContactData("Ivan", "Ivanovich", "Ivanov", "Test", new ContactData.DateInfo("5", "May", "1988"));
+            List<ContactData> contacts = new List<ContactData>();
 
+            for (int i = 0; i < 5; i++)
+            {
+
+             ContactData.DateInfo dateInfo = GenerateDate();
+GenerateDate
+            contacts.Add(
+                    new ContactData(
+                        GenerateName(5),
+                        GenerateName(5),
+                        GenerateName(5),
+                        GenerateName(5),
+                         new ContactData.DateInfo(dateInfo.Day, dateInfo.Month, dateInfo.Year)));
+            }
+            return contacts;
+        }
+
+     
+        [Test, TestCaseSource("RandomDataContactDataProvider")]
+        public void ContactCreationTest(ContactData contactData)
+        {
             List<ContactData> oldContacts = app.Contacts.GetAllContacts();
 
             app.Contacts
