@@ -291,16 +291,29 @@ namespace WebAddressBookTests
 
             string[] partsName = lines[0].Split(' ');
             string address = lines[1];
-            string homePhone = lines[3];
-            string mobilePhone = lines[4];
-            string workPhone = lines[5];
-            string email = lines[7];
-            string email2 = lines[8];
-            string email3 = lines[8];
+            string homePhone = "";
+            string mobilePhone = "";
+            string workPhone = "";
+            string email = null;
+            string email2 = null;
+            string email3 = null;
 
             string firstname = partsName[0];
             string lastname = partsName[1];
 
+            foreach (string line in lines)
+            {
+                if (line.StartsWith("H:"))
+                    homePhone = line.Substring(2).Trim();
+                else if (line.StartsWith("M:"))
+                    mobilePhone = line.Substring(2).Trim();
+                else if (line.StartsWith("W:"))
+                    workPhone = line.Substring(2).Trim();
+            }
+
+            if (lines.Length > 6) email = lines[6];
+            if (lines.Length > 7) email2 = lines[7];
+            if (lines.Length > 8) email3 = lines[8];
 
             return new ContactData(firstname, lastname)
             {
@@ -311,7 +324,7 @@ namespace WebAddressBookTests
                 Email = email,
                 Email2 = email2,
                 Email3 = email3
-            };
+                };
         }
     }
 }
