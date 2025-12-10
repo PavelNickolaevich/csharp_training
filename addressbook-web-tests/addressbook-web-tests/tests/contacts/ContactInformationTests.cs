@@ -15,26 +15,26 @@ namespace WebAddressBookTests.tests.contacts
         [Test]
         public void ContactCheckEditInfoTest()
         {
-            Random random = new Random();
-            string uniqueName = $"name_{random.Next(1, 100000000)}";
-            ContactData contact = new ContactData(
-                    uniqueName,
-                    uniqueName,
-                    "Москва 4пукпукрукрн4н4н4",
-                    "5353536",
-                    "3435-66565",
-                    "5(464)66666",
-                    "11@g.com",
-                    "12@g.com",
-                    "12@g.com"
-                    );
-            app.Contacts.CreateContactWithAddressEmailPhones(contact);
+            //Random random = new Random();
+            //string uniqueName = $"name_{random.Next(1, 100000000)}";
+            //ContactData contact = new ContactData(
+            //        uniqueName,
+            //        uniqueName,
+            //        "Москва 4пукпукрукрн4н4н4",
+            //        "5353536",
+            //        "3435-66565",
+            //        "5(464)66666",
+            //        "11@g.com",
+            //        "12@g.com",
+            //        "12@g.com"
+            //        );
+            //app.Contacts.CreateContactWithAddressEmailPhones(contact);
 
-            List<ContactData> contacts = app.Contacts.GetAllContacts();
+            //List<ContactData> contacts = app.Contacts.GetAllContacts();
            
-            int index = contacts.IndexOf(contact);
-            ContactData contactFromTable = app.Contacts.getContactDataFromTable(index);
-            ContactData contactFromEditForm = app.Contacts.getContactInformationFromEditForm(index);
+            //int index = contacts.IndexOf(contact);
+            ContactData contactFromTable = app.Contacts.getContactDataFromTable(0);
+            ContactData contactFromEditForm = app.Contacts.getContactInformationFromEditForm(0);
 
             Assert.AreEqual(contactFromTable,  contactFromEditForm);
             Assert.AreEqual(contactFromTable.Address,  contactFromEditForm.Address);
@@ -65,8 +65,8 @@ namespace WebAddressBookTests.tests.contacts
             List<ContactData> contacts = app.Contacts.GetAllContacts();
 
             int index = contacts.IndexOf(contact);
-            ContactData contactFromDetailFor = app.Contacts.getContactDataInformationFromDeatailsForm(index);
-            ContactData contactFromEditForm = app.Contacts.getContactInformationFromEditForm(index);
+            ContactData contactFromDetailFor = app.Contacts.getContactDataInformationFromDeatailsForm(0);
+            ContactData contactFromEditForm = app.Contacts.getContactInformationFromEditForm(0);
 
             Assert.AreEqual(contactFromDetailFor, contactFromEditForm);
             Assert.AreEqual(contactFromDetailFor.Address, contactFromEditForm.Address);

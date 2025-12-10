@@ -24,7 +24,7 @@ namespace WebAddressBookTests
             {
 
              ContactData.DateInfo dateInfo = GenerateDate();
-GenerateDate
+
             contacts.Add(
                     new ContactData(
                         GenerateName(5),

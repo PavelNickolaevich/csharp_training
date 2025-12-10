@@ -133,13 +133,26 @@ namespace WebAddressBookTests
                 }
                 else
                 {
-                    return Email + "\r\n" + Email2 + "\r\n" + Email3;
+                    return (CleanUpEmail(Email) + CleanUpEmail(Email2) + CleanUpEmail(Email3)).TrimEnd('\r', '\n');
                 }
             }
             set
             {
                 allEmail = value;
             }
+        }
+
+        private string CleanUpEmail(string email)
+        {
+            if (email == null || email == "")
+            {
+                return "";
+            }
+            else
+            {
+                return email + "\r\n";
+            }
+
         }
 
         public string AllPhones
@@ -150,7 +163,7 @@ namespace WebAddressBookTests
                 } 
                 else
                 {
-                    return CleanUpPhone(HomePhone) + CleanUpPhone(MobilePhone) + CleanUpPhone(WorkPhone).Trim();
+                    return (CleanUpPhone(HomePhone) + CleanUpPhone(MobilePhone) + CleanUpPhone(WorkPhone).Trim()).TrimEnd('\r', '\n');
                 }
             }
             set
