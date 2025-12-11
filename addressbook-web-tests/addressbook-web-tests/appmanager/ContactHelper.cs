@@ -1,11 +1,14 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml;
 using WebAddressBookTests;
 
 namespace WebAddressBookTests
@@ -276,7 +279,28 @@ namespace WebAddressBookTests
 
         }
 
-        public ContactData getContactDataInformationFromDeatailsForm(int index)
+        public string getContactStringInformationFromEditForm(int index)
+        {
+            manager.NavigationHelper.GoToHomePage();
+            SelectModifyContact(index);
+
+            string firstname = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string lastname = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string address = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+
+            return string.Join("", firstname, lastname, address, homePhone,
+                   mobilePhone, workPhone, email, email2, email3);
+        }
+
+        public string getContactDataInformationFromDeatailsForm(int index)
         {
 
             manager.NavigationHelper.GoToHomePage();
@@ -284,47 +308,10 @@ namespace WebAddressBookTests
             SelectDetailsContact(index);
 
             IWebElement content = driver.FindElement(By.Id("content"));
-            string allText = content.Text;
+            string сontentText = content.Text;
 
-            string[] lines = allText.Split(new[] { "\r\n", "\r", "\n" },
-                                 StringSplitOptions.None);
+            return Regex.Replace(сontentText, @"(\r\n|M:|W:|H:|\s)", "").Trim();
 
-            string[] partsName = lines[0].Split(' ');
-            string address = lines[1];
-            string homePhone = "";
-            string mobilePhone = "";
-            string workPhone = "";
-            string email = null;
-            string email2 = null;
-            string email3 = null;
-
-            string firstname = partsName[0];
-            string lastname = partsName[1];
-
-            foreach (string line in lines)
-            {
-                if (line.StartsWith("H:"))
-                    homePhone = line.Substring(2).Trim();
-                else if (line.StartsWith("M:"))
-                    mobilePhone = line.Substring(2).Trim();
-                else if (line.StartsWith("W:"))
-                    workPhone = line.Substring(2).Trim();
-            }
-
-            if (lines.Length > 6) email = lines[6];
-            if (lines.Length > 7) email2 = lines[7];
-            if (lines.Length > 8) email3 = lines[8];
-
-            return new ContactData(firstname, lastname)
-            {
-                Address = address,
-                HomePhone = homePhone,
-                MobilePhone = mobilePhone,
-                WorkPhone = workPhone,
-                Email = email,
-                Email2 = email2,
-                Email3 = email3
-                };
         }
     }
 }
