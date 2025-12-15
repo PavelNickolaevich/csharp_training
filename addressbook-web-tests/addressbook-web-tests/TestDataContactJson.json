@@ -1,0 +1,107 @@
+[
+  {
+    "Firstname": "Raezhohe",
+    "Middlename": "Suvovy",
+    "Lastname": "ZHabevo",
+    "Nickname": "Lalidi",
+    "Address": null,
+    "HomePhone": null,
+    "MobilePhone": null,
+    "WorkPhone": null,
+    "Email": null,
+    "Email2": null,
+    "Email3": null,
+    "DateInfoProperty": {
+      "Day": "11",
+      "Month": "February",
+      "Year": "1981"
+    },
+    "AllEmail": "",
+    "AllPhones": "",
+    "Id": null
+  },
+  {
+    "Firstname": "Nidiry",
+    "Middlename": "Hyhaetu",
+    "Lastname": "Mahovi",
+    "Nickname": "Qijiwe",
+    "Address": null,
+    "HomePhone": null,
+    "MobilePhone": null,
+    "WorkPhone": null,
+    "Email": null,
+    "Email2": null,
+    "Email3": null,
+    "DateInfoProperty": {
+      "Day": "17",
+      "Month": "January",
+      "Year": "2008"
+    },
+    "AllEmail": "",
+    "AllPhones": "",
+    "Id": null
+  },
+  {
+    "Firstname": "Semyny",
+    "Middlename": "Xyshogu",
+    "Lastname": "Vyxiki",
+    "Nickname": "Tukaela",
+    "Address": null,
+    "HomePhone": null,
+    "MobilePhone": null,
+    "WorkPhone": null,
+    "Email": null,
+    "Email2": null,
+    "Email3": null,
+    "DateInfoProperty": {
+      "Day": "3",
+      "Month": "January",
+      "Year": "2020"
+    },
+    "AllEmail": "",
+    "AllPhones": "",
+    "Id": null
+  },
+  {
+    "Firstname": "Vojany",
+    "Middlename": "Caebogu",
+    "Lastname": "Hevyvi",
+    "Nickname": "Tevyjo",
+    "Address": null,
+    "HomePhone": null,
+    "MobilePhone": null,
+    "WorkPhone": null,
+    "Email": null,
+    "Email2": null,
+    "Email3": null,
+    "DateInfoProperty": {
+      "Day": "8",
+      "Month": "January",
+      "Year": "1982"
+    },
+    "AllEmail": "",
+    "AllPhones": "",
+    "Id": null
+  },
+  {
+    "Firstname": "Bilepo",
+    "Middlename": "Juwyta",
+    "Lastname": "Mishuma",
+    "Nickname": "Tuxoxa",
+    "Address": null,
+    "HomePhone": null,
+    "MobilePhone": null,
+    "WorkPhone": null,
+    "Email": null,
+    "Email2": null,
+    "Email3": null,
+    "DateInfoProperty": {
+      "Day": "12",
+      "Month": "February",
+      "Year": "1961"
+    },
+    "AllEmail": "",
+    "AllPhones": "",
+    "Id": null
+  }
+]

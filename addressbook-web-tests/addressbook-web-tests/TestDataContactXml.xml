@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfContactData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ContactData>
+    <Firstname>Naewifae</Firstname>
+    <Middlename>Haerehu</Middlename>
+    <Lastname>Pyfyzha</Lastname>
+    <Nickname>Wegyho</Nickname>
+    <DateInfoProperty>
+      <Day>26</Day>
+      <Month>February</Month>
+      <Year>1966</Year>
+    </DateInfoProperty>
+    <AllEmail />
+    <AllPhones />
+  </ContactData>
+  <ContactData>
+    <Firstname>Mipiku</Firstname>
+    <Middlename>Kumoka</Middlename>
+    <Lastname>Lopyshy</Lastname>
+    <Nickname>Xusuqu</Nickname>
+    <DateInfoProperty>
+      <Day>1</Day>
+      <Month>January</Month>
+      <Year>2009</Year>
+    </DateInfoProperty>
+    <AllEmail />
+    <AllPhones />
+  </ContactData>
+  <ContactData>
+    <Firstname>Humafe</Firstname>
+    <Middlename>Cidila</Middlename>
+    <Lastname>Laehedo</Lastname>
+    <Nickname>Doqilu</Nickname>
+    <DateInfoProperty>
+      <Day>18</Day>
+      <Month>February</Month>
+      <Year>1964</Year>
+    </DateInfoProperty>
+    <AllEmail />
+    <AllPhones />
+  </ContactData>
+  <ContactData>
+    <Firstname>Nylixe</Firstname>
+    <Middlename>Jucazhae</Middlename>
+    <Lastname>Muroga</Lastname>
+    <Nickname>Jaelaebu</Nickname>
+    <DateInfoProperty>
+      <Day>9</Day>
+      <Month>January</Month>
+      <Year>1986</Year>
+    </DateInfoProperty>
+    <AllEmail />
+    <AllPhones />
+  </ContactData>
+  <ContactData>
+    <Firstname>Gomyne</Firstname>
+    <Middlename>ZHeluqy</Middlename>
+    <Lastname>Sajyse</Lastname>
+    <Nickname>Pupame</Nickname>
+    <DateInfoProperty>
+      <Day>21</Day>
+      <Month>February</Month>
+      <Year>1972</Year>
+    </DateInfoProperty>
+    <AllEmail />
+    <AllPhones />
+  </ContactData>
+</ArrayOfContactData>

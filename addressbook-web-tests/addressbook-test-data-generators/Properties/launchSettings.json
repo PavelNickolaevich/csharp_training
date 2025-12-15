@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "addressbook-test-data-generators": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

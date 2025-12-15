@@ -28,12 +28,11 @@ namespace WebAddressBookTests
             private string day;
             private string month;
             private string year;
-        //   private DateInfo dateInfo;
 
-            //public DateInfo(DateInfo dateInfo)
-            //{
-            //    this.dateInfo = dateInfo;
-            //}
+            public DateInfo()
+            {
+
+            }
 
             public DateInfo(string day, string month, string year)
             {
@@ -47,6 +46,11 @@ namespace WebAddressBookTests
         }
 
     
+
+        public ContactData()
+        {
+
+        }
 
         public ContactData(string firstname, string lastname)
         {
