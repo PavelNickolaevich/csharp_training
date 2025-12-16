@@ -160,6 +160,7 @@
     <Compile Include="tests\contacts\ContactDeleteTests.cs" />
     <Compile Include="tests\contacts\ContactInformationTests.cs" />
     <Compile Include="tests\contacts\ContactModificationTests.cs" />
+    <Compile Include="tests\extensions\CreateContactExtension.cs" />
     <Compile Include="tests\groups\GroupRemovalTests.cs" />
     <Compile Include="appmanager\HelperBase.cs" />
     <Compile Include="appmanager\LoginHelper.cs" />
@@ -173,7 +174,9 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="TestDataContactJson.json" />
+    <None Include="TestDataContactJson.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="TestDataGroup.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -182,7 +185,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestDataContactXml.xml" />
+    <Content Include="TestDataContactXml.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestDataGroupXml.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
