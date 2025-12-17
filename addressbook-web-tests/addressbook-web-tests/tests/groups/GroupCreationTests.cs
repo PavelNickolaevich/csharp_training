@@ -67,16 +67,15 @@ namespace WebAddressBookTests
           return  JsonConvert.DeserializeObject<List<GroupData>>(
                 File.ReadAllText(@"TestDataGroupJson.json"));
         }
-
         public static IEnumerable<GroupData> GroupDataFromExcelFile()
         {
             List<GroupData> groups = new List<GroupData>();
             Excel.Application app = new Excel.Application();
-            Excel.Workbook wb = app.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), @"TestDataGroupXlsx.xlsx")); 
+            Excel.Workbook wb = app.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), @"TestDataGroupXlsm.xlsx"));
             Excel.Worksheet sheet = wb.ActiveSheet;
             Excel.Range range = sheet.UsedRange;
 
-            for(int i = 1; i <= range.Rows.Count; i++)
+            for (int i = 1; i <= range.Rows.Count; i++)
             {
                 new GroupData()
                 {
@@ -90,6 +89,7 @@ namespace WebAddressBookTests
 
             return groups;
         }
+
 
         [Test, TestCaseSource("GroupDataFromExcelFile")]
         public void GroupCreationTest(GroupData groupData)

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using WebAddressBookTests.tests.extensions;
+
 
 
 namespace WebAddressBookTests.tests.contacts
@@ -12,14 +14,8 @@ namespace WebAddressBookTests.tests.contacts
     public class ContactDeleteTests : AuthTestBase
     {
 
-        [SetUp]
-        public void SetUp()
-        {
-            app.Contacts
-                .CreateContactIfNotExsist();
-        }
-
         [Test]
+        [CreateContactIfNotExsistExtension]
         public void ContactDeleteTest()
         {
             List<ContactData> oldContacts = app.Contacts.GetAllContacts();

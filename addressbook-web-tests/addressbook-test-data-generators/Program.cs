@@ -1,7 +1,8 @@
-﻿using Excel = Microsoft.Office.Interop.Excel;
+﻿using Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using WebAddressBookTests;
-using Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace addressbook_test_data_generators
 {
@@ -126,6 +127,7 @@ namespace addressbook_test_data_generators
 
         private static void WriteGroupsToExcelFile(List<GroupData> groups, string filename)
         {
+         
             Excel.Application app = new Excel.Application();
             app.Visible = true;
             Excel.Workbook wb = new Excel.Workbook();

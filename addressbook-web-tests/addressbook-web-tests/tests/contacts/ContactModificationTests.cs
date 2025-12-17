@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAddressBookTests.tests.extensions;
 
 namespace WebAddressBookTests.tests.contacts
 {
@@ -11,13 +12,8 @@ namespace WebAddressBookTests.tests.contacts
     public class ContactModificationTests : AuthTestBase
     {
 
-        [SetUp]
-        public void SetUp()
-        {
-            app.Contacts
-                .CreateContactIfNotExsist();
-        }
         [Test]
+        [CreateContactIfNotExsistExtension]
         public void ContactModificationTest() {
 
             ContactData contactData = new ContactData("IvanTest", "Petrovich", "Vasin", "Tes22t", new ContactData.DateInfo("10", "May", "1989"));

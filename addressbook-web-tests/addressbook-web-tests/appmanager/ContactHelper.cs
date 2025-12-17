@@ -60,7 +60,7 @@ namespace WebAddressBookTests
         {
             manager.NavigationHelper.GoToHomePage();
 
-            CreateContactIfNotExsist();
+           // CreateContactIfNotExsist();
 
             SelectContact(indexContact);
             DeleteContact();
@@ -192,7 +192,7 @@ namespace WebAddressBookTests
             if (GetContactsCount() == 0)
             {
                 CreateContact(contactData);
-                manager.NavigationHelper.ReturnToHomePage();
+             //   manager.NavigationHelper.ReturnToHomePage();
             }
         }
 
