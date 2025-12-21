@@ -46,7 +46,7 @@ namespace WebAddressBookTests.tests.contacts
         [Test]
          public void ContactCheckDetailInfoTest()
         {
-            string contactFromDetailForm = app.Contacts.getContactDataInformationFromDeatailsForm(0);
+            string contactFromDetailForm = app.Contacts.GetContactDataInformationFromDeatailsForm(0);
             string contactFromEditForm = app.Contacts.getContactStringInformationFromEditForm(0);
 
             Assert.AreEqual(contactFromDetailForm, contactFromEditForm);

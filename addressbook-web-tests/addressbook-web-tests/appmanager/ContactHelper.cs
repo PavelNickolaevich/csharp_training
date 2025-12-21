@@ -296,11 +296,105 @@ namespace WebAddressBookTests
             string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
             string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
 
-            return string.Join("", firstname, lastname, address, homePhone,
-                   mobilePhone, workPhone, email, email2, email3);
+         //   return $"{firstname} {FormatLastName(lastname)}{FormatAddress(address)}{FormatPhone("H", homePhone)}{FormatPhone("M", mobilePhone)}{FormatPhone("W", workPhone)}{FormatEmail(email)}{FormatEmail(email2)}{FormatEmail(email3)}".Trim();
+            return FormatContact(firstname, lastname, address, homePhone, mobilePhone, workPhone, email, email2, email3);
+
         }
 
-        public string getContactDataInformationFromDeatailsForm(int index)
+        public string FormatContact(
+            string firstname,
+            string lastname,
+            string address,
+            string homePhone,
+            string mobilePhone,
+            string workPhone,
+            string email,
+            string email2,
+            string email3
+            )
+        {
+            var result = new StringBuilder();
+
+            // Имя и фамилия
+            result.Append($"{firstname} {FormatLastName(lastname)}");
+
+            // Адрес
+            if (!string.IsNullOrEmpty(address)) {
+                result.Append($"\r\n{address}\r\n\r\n");
+             }
+            else { 
+                result.Append("\r\n\r\n");
+            }
+
+            // Телефоны
+            var phones = new List<string>();
+            if (!string.IsNullOrEmpty(homePhone))
+                phones.Add($"H: {homePhone}");
+            if (!string.IsNullOrEmpty(mobilePhone))
+                phones.Add($"M: {mobilePhone}");
+            if (!string.IsNullOrEmpty(workPhone))
+                phones.Add($"W: {workPhone}");
+
+            if (phones.Count > 0)
+            {
+                result.Append(string.Join("\r\n", phones));
+                result.Append("\r\n\r\n");
+            }
+
+            // Email
+            var emails = new List<string>();
+            if (!string.IsNullOrEmpty(email))
+                emails.Add(email);
+            if (!string.IsNullOrEmpty(email2))
+                emails.Add(email2);
+            if (!string.IsNullOrEmpty(email3))
+                emails.Add(email3);
+
+            if (emails.Count > 0)
+            {
+                result.Append(string.Join("\r\n", emails));
+                result.Append("\r\n");
+            }
+            return result.ToString().Trim();
+        }
+
+        private string FormatLastName(string line)
+        {
+            if (!string.IsNullOrEmpty(line))
+            {
+                return line;
+            }
+            return string.Empty;
+        }
+
+        private string FormatAddress(string line)
+        {
+            if (!string.IsNullOrEmpty(line))
+            {
+                return "\r\n" + line + "\r\n\r\n";
+            }
+            return string.Empty + "\r\n\r\n";
+        }
+
+        private string FormatPhone(string prefix, string phoneNumber)
+        {
+            if (!string.IsNullOrEmpty(phoneNumber))
+            {
+                return $"{prefix}: {phoneNumber}\r\n";
+            }
+            return string.Empty;
+        }
+
+        private string FormatEmail(string email)
+        {
+            if (!string.IsNullOrEmpty(email))
+            {
+                return email + "\r\n";
+            }
+            return string.Empty;
+        }
+
+        public string GetContactDataInformationFromDeatailsForm(int index)
         {
 
             manager.NavigationHelper.GoToHomePage();
@@ -310,7 +404,9 @@ namespace WebAddressBookTests
             IWebElement content = driver.FindElement(By.Id("content"));
             string сontentText = content.Text;
 
-            return Regex.Replace(сontentText, @"(\r\n|M:|W:|H:|\s)", "").Trim();
+            return сontentText;
+
+         //   return Regex.Replace(сontentText, @"(\r\n|M:|W:|H:|\s)", "").Trim();
 
         }
     }

@@ -67,25 +67,25 @@ namespace WebAddressBookTests
           return  JsonConvert.DeserializeObject<List<GroupData>>(
                 File.ReadAllText(@"TestDataGroupJson.json"));
         }
-        public static IEnumerable<GroupData> GroupDataFromExcelFile()
-        {
-            List<GroupData> groups = new List<GroupData>();
-            Excel.Application app = new Excel.Application();
-            Excel.Workbook wb = app.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), @"TestDataGroupXlsm.xlsx"));
-            Excel.Worksheet sheet = wb.ActiveSheet;
-            Excel.Range range = sheet.UsedRange;
+        //public static IEnumerable<GroupData> GroupDataFromExcelFile()
+        //{
+        //    List<GroupData> groups = new List<GroupData>();
+        //    Excel.Application app = new Excel.Application();
+        //    Excel.Workbook wb = app.Workbooks.Open(Path.Combine(Directory.GetCurrentDirectory(), @"TestDataGroupXlsm.xlsx"));
+        //    Excel.Worksheet sheet = wb.ActiveSheet;
+        //    Excel.Range range = sheet.UsedRange;
 
-            for (int i = 1; i <= range.Rows.Count; i++)
-            {
-                new GroupData()
-                {
-                    Name = range.Cells[i, 1].Value,
-                    Header = range.Cells[i, 1].Value,
-                    Footer = range.Cells[i, 1].Value,
-                };
-            }
-            wb.Close();
-            app.Visible = false;
+        //    for (int i = 1; i <= range.Rows.Count; i++)
+        //    {
+        //        new GroupData()
+        //        {
+        //            Name = range.Cells[i, 1].Value,
+        //            Header = range.Cells[i, 1].Value,
+        //            Footer = range.Cells[i, 1].Value,
+        //        };
+        //    }
+        //    wb.Close();
+        //    app.Visible = false;
 
         //    return groups;
         //}
