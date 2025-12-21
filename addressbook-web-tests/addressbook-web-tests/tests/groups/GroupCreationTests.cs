@@ -87,8 +87,8 @@ namespace WebAddressBookTests
             wb.Close();
             app.Visible = false;
 
-            return groups;
-        }
+        //    return groups;
+        //}
 
 
         [Test, TestCaseSource("GroupDataFromExcelFile")]
