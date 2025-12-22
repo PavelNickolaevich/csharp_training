@@ -13,8 +13,12 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml;
 using System.Xml.Serialization;
+using WebAddressBookTests.model;
 using WebAddressBookTests.tests;
 using Excel = Microsoft.Office.Interop.Excel;
+using LinqToDB;
+using LinqToDB.Data;
+using System.Linq;
 
 namespace WebAddressBookTests
 
@@ -108,6 +112,23 @@ namespace WebAddressBookTests
             Assert.AreEqual(oldGroups, newGroup);
             
             app.NavigationHelper.LogOut();
+        }
+
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUi = app.Groups.GetGroupsList();
+            DateTime end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+            start = DateTime.Now;
+            List<GroupData> fromDb = GroupData.GetAll();
+            end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+
+            Assert.AreEqual(fromUi.Count, fromDb.Count);
+
         }
 
         //[Test]
