@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WebAddressBookTests;
@@ -42,7 +43,7 @@ namespace WebAddressBookTests
             return this;
         }
 
-        public GroupHelper RemoveGroup(int index)
+        public GroupHelper RemoveGroupByIndex(int index)
         {
 
             manager.NavigationHelper.GoToGroupsPage();
@@ -52,6 +53,18 @@ namespace WebAddressBookTests
             ReturnToGroupsPage();
 
             return this;
+        }
+
+        public GroupHelper Remove(GroupData group)
+        {
+            manager.NavigationHelper.GoToGroupsPage();
+
+            SelectGroup(group.Id);
+            DeleteGroup();
+            ReturnToGroupsPage();
+
+            return this;
+
         }
 
 
@@ -87,6 +100,12 @@ namespace WebAddressBookTests
         public GroupHelper SelectGroup(int index)
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/span[" + (index + 1) + "]/input")).Click();
+            return this;
+        }
+
+        public GroupHelper SelectGroup(string id)
+        {
+            driver.FindElement(By.XPath("//input[@name='selected[]' and @value='"+id+"']")).Click();
             return this;
         }
 

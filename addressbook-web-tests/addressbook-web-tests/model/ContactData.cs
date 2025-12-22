@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using LinqToDB.Mapping;
+using OpenQA.Selenium;
 using OpenQA.Selenium.BiDi.Input;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace WebAddressBookTests 
 {
+    [Table (Name = "addressbook")]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
         private string firstname;
@@ -90,6 +92,10 @@ namespace WebAddressBookTests
             this.dateInfo = new DateInfo(dateInfo.Day, dateInfo.Month, dateInfo.Year);
         }
 
+        [Column(Name = "id"), PrimaryKey]
+        public string Id { get; set; }
+
+        [Column (Name = "firstname")]
         public string Firstname
         {
             get { return firstname; }
@@ -102,6 +108,7 @@ namespace WebAddressBookTests
             set { this.middlename = value; }
         }
 
+        [Column(Name = "lastname")]
         public string Lastname
         {
             get { return lastname; }
@@ -196,8 +203,6 @@ namespace WebAddressBookTests
             }
    
         }
-
-        public string Id { get; set; }
 
         public override int GetHashCode()
         {

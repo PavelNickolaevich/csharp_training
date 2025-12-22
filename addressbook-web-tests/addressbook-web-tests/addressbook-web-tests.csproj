@@ -188,10 +188,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="appmanager\GroupTestBase.cs" />
     <Compile Include="model\AccountData.cs" />
     <Compile Include="appmanager\ApplicationManger.cs" />
     <Compile Include="appmanager\BaseTest.cs" />
     <Compile Include="model\AddressBookDB.cs" />
+    <Compile Include="model\GroupContactRelation.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
     <Compile Include="model\ContactData.cs" />
     <Compile Include="appmanager\ContactHelper.cs" />

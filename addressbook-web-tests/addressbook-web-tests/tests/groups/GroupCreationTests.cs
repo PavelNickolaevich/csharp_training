@@ -1,4 +1,6 @@
 ﻿using addressbook_web_tests;
+using LinqToDB;
+using LinqToDB.Data;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -7,24 +9,23 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml;
 using System.Xml.Serialization;
+using WebAddressBookTests.appmanager;
 using WebAddressBookTests.model;
 using WebAddressBookTests.tests;
 using Excel = Microsoft.Office.Interop.Excel;
-using LinqToDB;
-using LinqToDB.Data;
-using System.Linq;
 
 namespace WebAddressBookTests
 
 {
     [TestFixture]
-    public class GroupCreationTests : AuthTestBase
+    public class GroupCreationTests : GroupTestBase
     {
 
         public static IEnumerable<GroupData> RandomGroupDataProvider()
@@ -95,17 +96,17 @@ namespace WebAddressBookTests
         //}
 
 
-        [Test, TestCaseSource("GroupDataFromExcelFile")]
+        [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTest(GroupData groupData)
         {
-            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+            List<GroupData> oldGroups = GroupData.GetAll();
 
             app.Groups
                    .CreateGroup(groupData);
 
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCount());
 
-            List<GroupData> newGroup = app.Groups.GetGroupsList();
+            List<GroupData> newGroup = GroupData.GetAll();
             oldGroups.Add(groupData);
             oldGroups.Sort();
             newGroup.Sort();
@@ -128,6 +129,16 @@ namespace WebAddressBookTests
             System.Console.Out.WriteLine(end.Subtract(start));
 
             Assert.AreEqual(fromUi.Count, fromDb.Count);
+
+        }
+
+        [Test]
+        public void TestDBConnectivity2()
+        {
+            foreach(ContactData contact in GroupData.GetAll()[0].GetContacts())
+            {
+                Console.Out.WriteLine(contact);
+            }
 
         }
 
