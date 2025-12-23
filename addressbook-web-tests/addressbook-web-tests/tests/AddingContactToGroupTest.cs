@@ -12,14 +12,14 @@ namespace WebAddressBookTests.tests
         [Test]
         public void TestAddingContactToGroup()
         {
-            GroupData group = GroupData.GetAll()[0];
-            List<ContactData> oldList = group.GetContacts();
-            List<ContactData> contacts = ContactData.GetAll();
+            GroupData group = GroupData.GetGroupsFromDb()[0];
+            List<ContactData> oldList = group.GetContactsFromDb();
+            List<ContactData> contacts = ContactData.GetAllContactsFromDb();
             ContactData contact = contacts.Except(oldList).First();
 
             app.Contacts.AddContactToGroup(contact, group);
 
-            List<ContactData> newList = group.GetContacts(); 
+            List<ContactData> newList = group.GetContactsFromDb(); 
             oldList.Add(contact);
             newList.Sort();
             oldList.Sort();

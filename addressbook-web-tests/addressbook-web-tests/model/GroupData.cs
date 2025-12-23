@@ -68,7 +68,7 @@ namespace WebAddressBookTests
         [Column(Name = "group_id"), PrimaryKey, Identity]
         public string Id { get; set; }
 
-        public static List<GroupData> GetAll()
+        public static List<GroupData> GetGroupsFromDb()
         {
             using (AddressBookDB db = new AddressBookDB())
             {
@@ -77,7 +77,7 @@ namespace WebAddressBookTests
             }
         }
 
-        public List<ContactData> GetContacts()
+        public List<ContactData> GetContactsFromDb()
         {
             using (AddressBookDB db = new AddressBookDB())
             {

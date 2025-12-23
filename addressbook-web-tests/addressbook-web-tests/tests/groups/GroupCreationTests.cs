@@ -99,14 +99,14 @@ namespace WebAddressBookTests
         [Test, TestCaseSource("GroupDataFromJsonFile")]
         public void GroupCreationTest(GroupData groupData)
         {
-            List<GroupData> oldGroups = GroupData.GetAll();
+            List<GroupData> oldGroups = GroupData.GetGroupsFromDb();
 
             app.Groups
                    .CreateGroup(groupData);
 
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCount());
 
-            List<GroupData> newGroup = GroupData.GetAll();
+            List<GroupData> newGroup = GroupData.GetGroupsFromDb();
             oldGroups.Add(groupData);
             oldGroups.Sort();
             newGroup.Sort();
@@ -124,7 +124,7 @@ namespace WebAddressBookTests
             System.Console.Out.WriteLine(end.Subtract(start));
 
             start = DateTime.Now;
-            List<GroupData> fromDb = GroupData.GetAll();
+            List<GroupData> fromDb = GroupData.GetGroupsFromDb();
             end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
 
@@ -135,7 +135,7 @@ namespace WebAddressBookTests
         [Test]
         public void TestDBConnectivity2()
         {
-            foreach(ContactData contact in GroupData.GetAll()[0].GetContacts())
+            foreach(ContactData contact in GroupData.GetGroupsFromDb()[0].GetContactsFromDb())
             {
                 Console.Out.WriteLine(contact);
             }

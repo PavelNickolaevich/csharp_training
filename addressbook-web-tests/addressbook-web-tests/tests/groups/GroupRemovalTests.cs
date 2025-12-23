@@ -21,14 +21,14 @@ namespace WebAddressBookTests
         {
             app.Groups.CreateGroupIfNotExsist();
 
-            List<GroupData> oldGroups = GroupData.GetAll();
+            List<GroupData> oldGroups = GroupData.GetGroupsFromDb();
             GroupData toBeRemoved = oldGroups[0];
 
             app.Groups.Remove(toBeRemoved);
           
             Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupsCount());
 
-            List<GroupData> newGroups = GroupData.GetAll();
+            List<GroupData> newGroups = GroupData.GetGroupsFromDb();
 
             oldGroups.RemoveAt(0);
             Assert.AreEqual(oldGroups, newGroups);

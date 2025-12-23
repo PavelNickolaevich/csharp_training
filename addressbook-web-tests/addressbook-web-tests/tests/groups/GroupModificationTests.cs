@@ -44,5 +44,36 @@ namespace WebAddressBookTests.tests
             }
 
         }
+
+        [Test]
+        public void GroupModifyWithDataBaseTest()
+
+        {
+            GroupData newGroupData = new GroupData("Modify", null, null);
+
+            app.Groups.CreateGroupIfNotExsist();
+
+            List<GroupData> oldGroups = GroupData.GetGroupsFromDb();
+            GroupData oldGroup = oldGroups[0];
+
+            app.Groups.ModifyByGroupId(oldGroup.Id, newGroupData);
+
+            Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupsCount());
+
+            List<GroupData> newGroup = GroupData.GetGroupsFromDb();
+            oldGroups[0].Name = newGroupData.Name;
+            oldGroups.Sort();
+            newGroup.Sort();
+            Assert.AreEqual(oldGroups, newGroup);
+
+            foreach (GroupData group in newGroup)
+            {
+                if (group.Id == oldGroup.Id)
+                {
+                    Assert.AreEqual(newGroupData.Name, group.Name);
+                }
+            }
+
+        }
     }
 }

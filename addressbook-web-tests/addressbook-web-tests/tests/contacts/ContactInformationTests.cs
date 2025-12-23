@@ -6,11 +6,12 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using WebAddressBookTests.appmanager;
 
 namespace WebAddressBookTests.tests.contacts
 {
     [TestFixture]
-    public class ContactInformationTests : AuthTestBase
+    public class ContactInformationTests : ContactTestBase
     {
         [Test]
         public void ContactCheckEditInfoTest()

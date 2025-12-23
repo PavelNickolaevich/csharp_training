@@ -56,6 +56,21 @@ namespace WebAddressBookTests
             return this;
         }
 
+        public ContactHelper ModificationGroupByContactId(string contacId, ContactData contactData, int numBtn)
+        {
+            manager.NavigationHelper.GoToHomePage();
+
+            CreateContactIfNotExsist();
+
+            SelectModifyContactById(contacId);
+            FullContactInfo(contactData);
+            UpdateContactInfo(numBtn);
+
+            manager.NavigationHelper.ReturnToHomePage();
+
+            return this;
+        }
+
         public ContactHelper RemoveContact(int indexContact)
         {
             manager.NavigationHelper.GoToHomePage();
@@ -67,6 +82,24 @@ namespace WebAddressBookTests
 
             manager.NavigationHelper.ReturnToHomePage();
 
+            return this;
+        }
+
+        public ContactHelper RemoveContact(ContactData contact)
+        {
+            manager.NavigationHelper.GoToHomePage();
+
+            SelectContactById(contact.Id);
+            DeleteContact();
+
+            manager.NavigationHelper.ReturnToHomePage();
+
+            return this;
+        }
+
+        private ContactHelper SelectContactById(string contactId)
+        {
+            driver.FindElement(By.XPath($"//input[@type='checkbox' and @value='"+contactId+"']")).Click();
             return this;
         }
 
@@ -175,6 +208,12 @@ namespace WebAddressBookTests
         public ContactHelper SelectModifyContact(int indexContact)
         {
             driver.FindElements(By.XPath($"//img[@title='Edit']"))[indexContact].Click();
+            return this;
+        }
+
+        public ContactHelper SelectModifyContactById(string contactId)
+        {
+            driver.FindElement(By.XPath($"//a[@href='edit.php?id="+contactId+"']")).Click();
             return this;
         }
 

@@ -11,12 +11,13 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml.Serialization;
+using WebAddressBookTests.appmanager;
 using WebAddressBookTests.tests;
 
 namespace WebAddressBookTests
 {
     [TestFixture]
-    public class ContactCreationTests : AuthTestBase
+    public class ContactCreationTests : ContactTestBase
     {
 
         public static IEnumerable<ContactData> RandomDataContactDataProvider()
@@ -56,7 +57,8 @@ namespace WebAddressBookTests
         [Test, TestCaseSource("ContactDataFromJsonFile")]
         public void ContactCreationTest(ContactData contactData)
         {
-            List<ContactData> oldContacts = app.Contacts.GetAllContacts();
+            //List<ContactData> oldContacts = app.Contacts.GetAllContacts();
+            List<ContactData> oldContacts = ContactData.GetAllContactsFromDb();
 
             app.Contacts
                 .CreateContact(contactData);
@@ -64,15 +66,16 @@ namespace WebAddressBookTests
             int actualContacts = app.Contacts.GetContactsCount();
             Assert.AreEqual(oldContacts.Count + 1, actualContacts, "Количество контактов");
 
-            List<ContactData> newContacts = app.Contacts.GetAllContacts();
+           // List<ContactData> newContacts = app.Contacts.GetAllContacts();
+            List<ContactData> newContacts = ContactData.GetAllContactsFromDb();
             oldContacts.Add(contactData);
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
 
-            app.NavigationHelper
+          //  app.NavigationHelper
                 //.ReturnToHomePage()
-                .LogOut();
+             //   .LogOut();
         }
     }
 }

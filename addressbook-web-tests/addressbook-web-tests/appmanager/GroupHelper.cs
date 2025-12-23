@@ -28,13 +28,28 @@ namespace WebAddressBookTests
             return this;
         }
 
-        internal GroupHelper Modify(int indexGroup, GroupData groupData)
+         public GroupHelper Modify(int indexGroup, GroupData groupData)
         {
             manager.NavigationHelper.GoToGroupsPage();
 
             CreateGroupIfNotExsist();
 
             SelectGroup(indexGroup);
+            InitGroupModification();
+            FillGroupForm(groupData);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
+
+            return this;
+        }
+
+        public GroupHelper ModifyByGroupId(string groupId, GroupData groupData)
+        {
+            manager.NavigationHelper.GoToGroupsPage();
+
+            CreateGroupIfNotExsist();
+
+            SelectGroup(groupId);
             InitGroupModification();
             FillGroupForm(groupData);
             SubmitGroupModification();

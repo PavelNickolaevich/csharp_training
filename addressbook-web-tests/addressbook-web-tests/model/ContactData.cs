@@ -252,7 +252,7 @@ namespace WebAddressBookTests
             return Lastname.CompareTo(other.Lastname);
         }
 
-        public static List<ContactData> GetAll()
+        public static List<ContactData> GetAllContactsFromDb()
         {
             using (AddressBookDB db = new AddressBookDB())
             {
