@@ -11,6 +11,7 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using WebAddressBookTests.model;
 
 namespace WebAddressBookTests 
 {
@@ -126,7 +127,10 @@ namespace WebAddressBookTests
         public string WorkPhone { get; set; } 
         public string Email { get; set; } 
         public string Email2 { get; set; } 
-        public string Email3 { get; set; } 
+        public string Email3 { get; set; }
+
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
 
         public DateInfo DateInfoProperty
         {
@@ -247,6 +251,17 @@ namespace WebAddressBookTests
             // Если Firstname равны, сравниваем по Middlename
             return Lastname.CompareTo(other.Lastname);
         }
+
+        public static List<ContactData> GetAll()
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                //return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
+                return (from c in db.Contacts.Where(x => x.Deprecated == null) select c).ToList();
+            }
+        }
     }
+
+
 }
 

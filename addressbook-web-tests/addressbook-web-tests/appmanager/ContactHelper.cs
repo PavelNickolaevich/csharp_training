@@ -62,7 +62,7 @@ namespace WebAddressBookTests
 
            // CreateContactIfNotExsist();
 
-            SelectContact(indexContact);
+            SelectContactByIndex(indexContact);
             DeleteContact();
 
             manager.NavigationHelper.ReturnToHomePage();
@@ -77,7 +77,7 @@ namespace WebAddressBookTests
             return this;
         }
 
-        public ContactHelper SelectContact(int indexContact)
+        public ContactHelper SelectContactByIndex(int indexContact)
         {
             driver.FindElements(By.XPath($"//input[@type='checkbox']"))[indexContact].Click();
             return this;
@@ -408,6 +408,38 @@ namespace WebAddressBookTests
 
          //   return Regex.Replace(сontentText, @"(\r\n|M:|W:|H:|\s)", "").Trim();
 
+        }
+
+        public void AddContactToGroup(ContactData contact, GroupData group)
+        {
+            manager.NavigationHelper.GoToHomePage();
+            CleanGroupFilter();
+            SelectContact(contact.Id);
+            SelectGroupToAdd(group.Name);
+            CommitAddingContactToGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        public void SelectContact(string contactId)
+        {
+            driver.FindElement(By.Id(contactId)).Click();
+        }
+
+        public void CommitAddingContactToGroup()
+        {
+            driver.FindElement(By.Name("add")).Click();     
+        }
+
+        public void SelectGroupToAdd(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+
+        }
+
+        public void CleanGroupFilter()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
         }
     }
 }

@@ -194,6 +194,7 @@
     <Compile Include="appmanager\BaseTest.cs" />
     <Compile Include="model\AddressBookDB.cs" />
     <Compile Include="model\GroupContactRelation.cs" />
+    <Compile Include="tests\AddingContactToGroupTest.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
     <Compile Include="model\ContactData.cs" />
     <Compile Include="appmanager\ContactHelper.cs" />
