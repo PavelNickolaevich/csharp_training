@@ -112,7 +112,7 @@ namespace WebAddressBookTests
             newGroup.Sort();
             Assert.AreEqual(oldGroups, newGroup);
             
-            app.NavigationHelper.LogOut();
+           // app.NavigationHelper.LogOut();
         }
 
         [Test]
