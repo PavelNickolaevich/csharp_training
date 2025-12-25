@@ -77,6 +77,15 @@ namespace WebAddressBookTests
             }
         }
 
+        public static GroupData GetGroupsByNameFromDb(string name)
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            {
+                return (from g in db.Groups.Where(g => g.Name == name) select g).First();
+
+            }
+        }
+
         public List<ContactData> GetContactsFromDb()
         {
             using (AddressBookDB db = new AddressBookDB())

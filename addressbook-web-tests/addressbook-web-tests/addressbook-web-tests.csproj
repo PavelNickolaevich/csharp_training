@@ -205,7 +205,9 @@
     <Compile Include="tests\contacts\ContactDeleteTests.cs" />
     <Compile Include="tests\contacts\ContactInformationTests.cs" />
     <Compile Include="tests\contacts\ContactModificationTests.cs" />
+    <Compile Include="tests\DeleteContactFromGroupTest.cs" />
     <Compile Include="tests\extensions\CreateContactIfNotExsistExtension.cs" />
+    <Compile Include="tests\extensions\CreateGroupWithContactExtension.cs" />
     <Compile Include="tests\groups\GroupRemovalTests.cs" />
     <Compile Include="appmanager\HelperBase.cs" />
     <Compile Include="appmanager\LoginHelper.cs" />

@@ -260,6 +260,15 @@ namespace WebAddressBookTests
                 return (from c in db.Contacts.Where(x => x.Deprecated == null) select c).ToList();
             }
         }
+
+        public static ContactData GetContactByName(string firstName)
+        {
+            using (AddressBookDB db = new AddressBookDB())
+            { 
+                return (from c in db.Contacts.Where(x => x.Firstname == firstName) select c).First();
+            }
+
+        }
     }
 
 
