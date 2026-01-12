@@ -1,4 +1,5 @@
 ﻿using addressbook_web_tests;
+using Allure.NUnit;
 using Newtonsoft.Json;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -14,9 +15,11 @@ using System.Xml.Serialization;
 using WebAddressBookTests.appmanager;
 using WebAddressBookTests.tests;
 
+
 namespace WebAddressBookTests
 {
     [TestFixture]
+    [AllureNUnit]
     public class ContactCreationTests : ContactTestBase
     {
 

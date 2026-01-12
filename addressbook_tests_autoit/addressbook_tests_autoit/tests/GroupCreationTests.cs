@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
+using Allure.NUnit;
 
 namespace addressbook_tests_autoit
 {
+    [AllureNUnit]
     public class GroupCreationTests : BaseTest
     {
 

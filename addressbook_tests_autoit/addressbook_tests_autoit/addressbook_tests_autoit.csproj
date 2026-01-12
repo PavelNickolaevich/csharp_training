@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Allure.NUnit" Version="2.14.1" />
     <PackageReference Include="AutoItX.Dotnet" Version="3.3.14.5" />
     <PackageReference Include="AutoItX.NetCore" Version="3.3.16.1" />
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
